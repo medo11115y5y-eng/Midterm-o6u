@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta property="og:title" content="شبح الميدتيرم - طب بشري 💀">
+    <meta property="og:description" content="فاضل كام يوم على هلاك الميدتيرم؟ ادخل شوف العداد 🥲💉">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#050505">
+    <title>شبح الميدتيرم - طب بشري 💀🩸</title>
+    
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #050505;
+            color: #e5e5e5;
+            background-image: radial-gradient(circle at center, #230404 0%, #000000 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .blood-text {
+            color: #ef4444;
+            text-shadow: 0 0 15px rgba(239, 68, 68, 0.6), 0 0 30px rgba(239, 68, 68, 0.4);
+        }
+
+        .heartbeat {
+            animation: heartbeat 1.2s ease-in-out infinite both;
+        }
+
+        @keyframes heartbeat {
+            from { transform: scale(1); transform-origin: center center; }
+            10% { transform: scale(0.91); }
+            17% { transform: scale(0.98); }
+            33% { transform: scale(0.87); }
+            45% { transform: scale(1); }
+        }
+
+        .floating-bg {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.05;
+            filter: grayscale(100%);
+            animation: float 10s infinite ease-in-out alternate;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-30px) rotate(15deg); }
+        }
+
+        .glass-card {
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #450a0a;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: #ef4444;
+        }
+        
+        .timer-box {
+            background: linear-gradient(145deg, #1f2937, #111827);
+            border-bottom: 4px solid #b91c1c;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .timer-box:hover {
+            transform: scale(1.05);
+        }
+
+        .timer-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, #ef4444, transparent);
+            opacity: 0.5;
+        }
+
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background: linear-gradient(to right, #166534, #14532d);
+            color: #fff;
+            text-align: center;
+            border-radius: 12px;
+            padding: 16px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            bottom: -50px;
+            transform: translateX(-50%);
+            font-size: 16px;
+            font-weight: bold;
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 30px;
+        }
+    </style>
+
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:Arial,"Tahoma",sans-serif;background:#050505;color:#e5e5e5;background-image:radial-gradient(circle at center,#230404 0%,#000 100%);min-height:100vh;overflow-x:hidden}
+body.flex{display:flex}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-start{justify-content:flex-start}
+.min-h-screen{min-height:100vh}.py-8{padding-top:2rem;padding-bottom:2rem}.px-4{padding-left:1rem;padding-right:1rem}.w-full{width:100%}
+.max-w-4xl{max-width:56rem}.max-w-5xl{max-width:64rem}.max-w-md{max-width:28rem}.mt-4{margin-top:1rem}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}
+.text-center{text-align:center}.z-10{z-index:10;position:relative}.inline-flex{display:inline-flex}.items-center{align-items:center}.gap-2{gap:.5rem}.gap-3{gap:.75rem}
+.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.p-6{padding:1.5rem}.p-12{padding:3rem}
+.rounded-full{border-radius:9999px}.rounded-2xl{border-radius:1rem}.border{border:1px solid #450a0a}.border-red-800{border-color:#991b1b}.border-l-4{border-left:4px solid #dc2626}
+.grid{display:grid}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-1{grid-template-columns:1fr}.gap-4{gap:1rem}.gap-6{gap:1.5rem}
+.font-bold{font-weight:700}.font-black{font-weight:900}.font-semibold{font-weight:600}.italic{font-style:italic}.leading-tight{line-height:1.15}.leading-relaxed{line-height:1.7}.tracking-tight{letter-spacing:-.02em}.tracking-tighter{letter-spacing:-.05em}
+.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.text-xl{font-size:1.25rem}.text-2xl{font-size:1.5rem}.text-3xl{font-size:1.875rem}.text-4xl{font-size:2.25rem}.text-5xl{font-size:3rem}.text-6xl{font-size:3.75rem}.text-8xl{font-size:6rem}.text-9xl{font-size:8rem}
+.text-white{color:#fff}.text-gray-100{color:#f3f4f6}.text-gray-300{color:#d1d5db}.text-gray-400{color:#9ca3af}.text-gray-500{color:#6b7280}.text-red-400{color:#f87171}.text-red-500{color:#ef4444}
+.bg-red-950\/50{background:rgba(69,10,10,.5)}.bg-red-950\/20{background:rgba(69,10,10,.2)}
+.relative{position:relative}.fixed{position:fixed}.overflow-hidden{overflow:hidden}
+.shadow-2xl{box-shadow:0 10px 30px rgba(0,0,0,.8)}.transition-all{transition:all .3s}.duration-300{transition-duration:.3s}
+button{font-family:inherit;cursor:pointer;border:0}.timer-box{background:linear-gradient(145deg,#1f2937,#111827);border-bottom:4px solid #b91c1c;position:relative;overflow:hidden;transition:transform .3s}
+.timer-box:hover{transform:scale(1.03)}
+.glass-card{background:rgba(20,20,20,.88);backdrop-filter:blur(12px);border:1px solid #450a0a;box-shadow:0 10px 30px rgba(0,0,0,.8)}
+.blood-text{color:#ef4444;text-shadow:0 0 15px rgba(239,68,68,.6),0 0 30px rgba(239,68,68,.4)}
+.floating-bg{position:fixed;z-index:0;opacity:.05;filter:grayscale(100%);animation:float 10s infinite ease-in-out alternate}
+@keyframes float{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(-30px) rotate(15deg)}}
+.heartbeat{animation:heartbeat 1.2s ease-in-out infinite both}
+@keyframes heartbeat{0%,100%{transform:scale(1)}10%{transform:scale(.91)}17%{transform:scale(.98)}33%{transform:scale(.87)}45%{transform:scale(1)}}
+#toast{visibility:hidden;min-width:250px;background:linear-gradient(to right,#166534,#14532d);color:#fff;text-align:center;border-radius:12px;padding:16px;position:fixed;z-index:100;left:50%;bottom:-50px;transform:translateX(-50%);font-size:16px;font-weight:bold;opacity:0;transition:all .5s;box-shadow:0 10px 25px rgba(0,0,0,.5)}
+#toast.show{visibility:visible;opacity:1;bottom:30px}
+@media(max-width:700px){
+ .grid-cols-2{grid-template-columns:1fr 1fr}.text-4xl{font-size:2rem}.text-5xl{font-size:2.5rem}.text-6xl{font-size:3rem}.text-8xl{font-size:4rem}.text-9xl{font-size:5rem}
+ .p-6{padding:1rem}.p-12{padding:2rem}.gap-6{gap:1rem}
+}
+@media(min-width:768px){
+ .md\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .md\:text-2xl{font-size:1.5rem}.md\:text-3xl{font-size:1.875rem}.md\:text-6xl{font-size:3.75rem}.md\:text-7xl{font-size:4.5rem}
+}
+</style>
+
+<style>
+body{font-family:'Cairo',Tahoma,Arial,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);position:relative}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.65) 100%)}
+h1 .blood-text{background:linear-gradient(180deg,#fca5a5,#ef4444 45%,#991b1b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(0 0 18px rgba(239,68,68,.55))}
+.timer-box{border:1px solid rgba(239,68,68,.25);border-bottom:4px solid #b91c1c;box-shadow:0 0 25px rgba(185,28,28,.25),inset 0 0 30px rgba(0,0,0,.5)}
+.timer-box div:first-child{font-variant-numeric:tabular-nums;line-height:1}
+#seconds{animation:tick 1s ease-in-out infinite}
+@keyframes tick{0%,100%{opacity:1}50%{opacity:.55}}
+.glass-card{transition:transform .3s,border-color .3s,box-shadow .3s}
+.glass-card:hover{transform:translateY(-4px);border-color:#ef4444;box-shadow:0 12px 35px rgba(220,38,38,.25)}
+.ecg{width:100%;max-width:34rem;height:60px;margin:1.25rem auto 0;display:block}
+.ecg path{fill:none;stroke:#ef4444;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:420;stroke-dashoffset:420;animation:ecg 2.6s linear infinite;filter:drop-shadow(0 0 6px #ef4444)}
+@keyframes ecg{0%{stroke-dashoffset:420}70%,100%{stroke-dashoffset:0}}
+footer{opacity:.8}
+@media(prefers-reduced-motion:reduce){.ecg path,#seconds,.heartbeat{animation:none}.ecg path{stroke-dashoffset:0}}
+.bar{height:14px;border-radius:999px;background:#111;border:1px solid #450a0a;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#b91c1c,#ef4444,#fca5a5);box-shadow:0 0 12px #ef4444;transition:width 1s}
+.bar i.study{background:linear-gradient(90deg,#166534,#22c55e);box-shadow:0 0 12px #22c55e}
+.fun-btn{width:100%;padding:16px 20px;font-size:1.15rem;font-weight:900;color:#fff;border-radius:16px;background:linear-gradient(90deg,#991b1b,#dc2626);box-shadow:0 0 20px rgba(220,38,38,.45);transition:transform .15s}
+.fun-btn:active{transform:scale(.96)}
+.fly{position:fixed;z-index:50;font-size:2rem;pointer-events:none;animation:fly 1.2s ease-out forwards}
+@keyframes fly{to{transform:translateY(-120px) scale(1.6);opacity:0}}
+</style>
+</head>
+<body class="flex flex-col items-center justify-start min-h-screen py-8 px-4 w-full">
+
+    <div class="floating-bg text-8xl top-10 right-10 delay-75">💉</div>
+    <div class="floating-bg text-9xl bottom-20 left-10 delay-150">🩺</div>
+    <div class="floating-bg text-7xl top-1/3 left-5 delay-300">💊</div>
+    <div class="floating-bg text-8xl bottom-1/4 right-5 delay-500">💀</div>
+
+    <header class="text-center w-full max-w-4xl mt-4 mb-10 z-10">
+        <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-red-950/50 text-red-400 text-sm md:text-base font-bold mb-6 border border-red-800 heartbeat shadow-[0_0_15px_rgba(153,27,27,0.5)]">
+            <span>⚠️</span> حالة طوارئ قصوى: هنسقط يا دفعة <span>⚠️</span>
+        </div>
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-4 leading-tight tracking-tight">
+            العد التنازلي <br />
+            <span class="blood-text">لهلاك الميدتيرم</span> 💀
+        </h1>
+        <p class="text-lg md:text-2xl text-gray-400 mt-4 font-bold">
+            شبح الـ <span class="text-red-500">IBS</span> والـ <span class="text-red-500">IBF</span> والـ <span class="text-red-500">IHI</span> بيقرب! 🚑
+        </p>
+    <svg class="ecg" viewBox="0 0 400 60" aria-hidden="true"><path d="M0 30 H110 L125 30 L135 8 L150 52 L162 18 L172 30 H235 L248 30 L258 10 L272 50 L284 20 L294 30 H400"/></svg>
+    </header>
+
+    <main class="w-full max-w-5xl z-10 flex flex-col items-center">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 w-full mb-12" id="countdown">
+            
+            <div class="timer-box rounded-2xl p-6 flex flex-col items-center justify-center shadow-2xl">
+                <div id="days" class="text-5xl md:text-7xl font-black blood-text mb-2 tracking-tighter">00</div>
+                <div class="text-gray-400 font-bold text-sm md:text-lg">أيام العذاب</div>
+            </div>
+            
+            <div class="timer-box rounded-2xl p-6 flex flex-col items-center justify-center shadow-2xl">
+                <div id="hours" class="text-5xl md:text-7xl font-black text-gray-100 mb-2 tracking-tighter">00</div>
+                <div class="text-gray-400 font-bold text-sm md:text-lg">ساعات القلق</div>
+            </div>
+            
+            <div class="timer-box rounded-2xl p-6 flex flex-col items-center justify-center shadow-2xl">
+                <div id="minutes" class="text-5xl md:text-7xl font-black text-gray-100 mb-2 tracking-tighter">00</div>
+                <div class="text-gray-400 font-bold text-sm md:text-lg">دقائق الانهيار</div>
+            </div>
+            
+            <div class="timer-box rounded-2xl p-6 flex flex-col items-center justify-center shadow-2xl">
+                <div id="seconds" class="text-5xl md:text-7xl font-black text-gray-100 mb-2 tracking-tighter">00</div>
+                <div class="text-gray-400 font-bold text-sm md:text-lg">ثواني الندم</div>
+            </div>
+        </div>
+
+        <section class="w-full max-w-md mb-12 z-10 flex flex-col gap-4">
+            <div class="glass-card rounded-2xl p-6">
+                <div class="flex items-center gap-2 font-black text-lg mb-3"><span>📈</span> عدّاد الذعر</div>
+                <div class="bar"><i id="panicFill"></i></div>
+                <div class="text-gray-300 font-bold mt-3" id="panicText"></div>
+                <div class="flex items-center gap-2 font-black text-lg mt-5 mb-3"><span>📖</span> اللي اتذاكر فعلاً</div>
+                <div class="bar"><i class="study" style="width:7%"></i></div>
+                <div class="text-gray-500 text-sm font-bold mt-2">القياس بالعين المجردة وبكل تفاؤل 😅</div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div id="rx" class="text-white font-bold text-lg leading-relaxed mb-4">اضغط واخد روشتة من الدكتور الفاشل 👇</div>
+                <button id="rxBtn" class="fun-btn" type="button">💊 اكتبلي روشتة</button>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-gray-300 font-bold mb-1">عدد الرجالة اللي اتفرمت 💪</div>
+                <div id="cryCount" class="text-5xl font-black blood-text mb-4">0</div>
+                <button id="cryBtn" class="fun-btn" type="button">💪 اتفرمت زيهم</button>
+            </div>
+        <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="font-black text-lg mb-2">⏱️ ذاكرت كام ساعة النهارده؟</div>
+                <input id="hrs" type="range" min="0" max="12" value="0" style="width:100%;accent-color:#ef4444">
+                <div class="text-4xl font-black blood-text my-2"><span id="hrsVal">0</span> ساعة</div>
+                <div id="hrsVerdict" class="text-gray-300 font-bold leading-relaxed"></div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="font-black text-lg mb-2">🏷️ لقبك في الدفعة</div>
+                <div id="titleOut" class="text-white font-black text-2xl my-3">اضغط واعرف مقامك 👇</div>
+                <button id="titleBtn" class="fun-btn" type="button">🎲 اديني لقب</button>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+            <div class="glass-card rounded-2xl p-6 relative group border-l-4 border-l-red-600">
+                <h3 class="text-2xl font-black text-red-500 mb-3 flex items-center gap-2">
+                    <span>🔬</span> IBS Module
+                </h3>
+                <p class="text-gray-300 leading-relaxed font-semibold text-lg">
+                    الاسم الحقيقي: <strong class="text-white text-xl">I Become Sad</strong> 🥲. 
+                    <br>الموديول ده معمول مخصوص عشان يقيس مدى قدرتك على تحمل الاكتئاب مش عشان تتعلم حاجة.
+                </p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 relative group border-l-4 border-l-red-600">
+                <h3 class="text-2xl font-black text-red-500 mb-3 flex items-center gap-2">
+                    <span>🧬</span> IBF Module
+                </h3>
+                <p class="text-gray-300 leading-relaxed font-semibold text-lg">
+                    <strong class="text-white">الـ IBF بيخلص عليا!</strong> 💀
+                    <br>كمية تفاصيل لو حفظت اسمي هنسى الفانكشن بتاعت الأورجان. البصمجة مش نافعة!
+                </p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 relative group border-l-4 border-l-red-600">
+                <h3 class="text-2xl font-black text-red-500 mb-3 flex items-center gap-2">
+                    <span>🦠</span> IHI Module
+                </h3>
+                <p class="text-gray-300 leading-relaxed font-semibold text-lg">
+                    جابلي الهسهس.. أنا بقيت بشك في كل خليه في جسمي إنها بتتآمر ضدي عشان أسقط في الميدتيرم 😵‍💫.
+                </p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 relative group border border-red-800 bg-red-950/20 shadow-[0_0_15px_rgba(153,27,27,0.3)]">
+                <h3 class="text-2xl font-black text-white mb-3 flex items-center gap-2">
+                    <span>📚</span> المحاضرات المتراكمة
+                </h3>
+                <p class="text-gray-300 leading-relaxed font-bold text-lg italic">
+                    "المحاضرات بتتراكم زي ذنوبي بالظبط.. بس للأسف الدكاترة مبيغفروش زي ربنا." 💔
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-16 text-center text-gray-500 text-sm pb-8 z-10 w-full font-bold">
+        <p>تم الصنع بعرق طلاب طب بشري وقهوة كتير ☕ | ادعولنا نعدي على خير</p>
+    </footer>
+
+    <script>
+        // Set the exact target date: November 1, 2026 at 00:00:00
+        const targetDate = new Date("2026-11-01T00:00:00").getTime();
+
+        // Update immediately, then every 1 second
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            // Calculate time parts
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Format numbers to always be 2 digits
+            const formatTime = (time) => time < 10 ? `0${time}` : time;
+
+            // Update DOM
+            document.getElementById("days").innerHTML = formatTime(days);
+            document.getElementById("hours").innerHTML = formatTime(hours);
+            document.getElementById("minutes").innerHTML = formatTime(minutes);
+            document.getElementById("seconds").innerHTML = formatTime(seconds);
+
+            // If the countdown is finished
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = `
+                    <div class="col-span-2 md:col-span-4 timer-box rounded-2xl p-12 text-center shadow-[0_0_50px_rgba(220,38,38,0.6)]">
+                        <div class="text-6xl md:text-8xl font-black blood-text mb-6 heartbeat">GAME OVER 💀</div>
+                        <div class="text-white font-bold text-2xl md:text-3xl leading-relaxed">
+                            تمت عملية الفرم بنجاح..<br>البقاء لله في الدفعة! 🚑
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+        </script>
+<script>
+const rxList=["روشتة: ٣ أكواب قهوة + محاضرة + صبر، تتكرر لحد الميدتيرم 💊","لو الدكتور قال \"ده سهل\" يبقى هتتفرم. ده تشخيص مش نصيحة 🩺","النوم ممنوع مؤقتًا، هيرجع بعد الميدتيرم مع التعويضات 😴","اللي بيقولك \"خلصت المنهج\" كداب أو ملوش دعوة بالمذاكرة 🤥","متقارنش نفسك بزميلك اللي مذاكر من أول يوم، ده كائن فضائي 👽","افتح السلايدات وبص عليها بحب.. الحب بيعمل معجزات ❤️‍🩹","ذاكر بالـ active recall.. أو استسلم وادعي، النتيجة قريبة 😂","القهوة مش بتخليك تفهم، بس بتخليك تفهم إنك مش فاهم أسرع ☕","التشخيص: متلازمة \"هذاكر بكرة\" مزمنة، العلاج: بكرة 🤡","افتكر إن الدكتور نفسه كان معدّي بالعافية 😅"];
+const rxEl=document.getElementById("rx");let rxLast=-1;
+document.getElementById("rxBtn").addEventListener("click",()=>{let i;do{i=Math.floor(Math.random()*rxList.length)}while(i===rxLast);rxLast=i;rxEl.textContent=rxList[i];});
+const levels=[[0,"لسه بدري.. بس إنت متوتر من دلوقتي 😌"],[25,"الهمس بدأ، والـ IBS بيبصلك من بعيد 👀"],[50,"المحاضرات المتراكمة بتناديك باسمك 📚"],[75,"مرحلة الذهول: بتذاكر وإنت مش فاهم بتعمل إيه 😵‍💫"],[92,"استعد للفرم.. اكتب وصيتك 🚑"]];
+function updatePanic(){const d=(targetDate-Date.now())/864e5;const pct=Math.max(0,Math.min(100,Math.round((1-d/35)*100)));document.getElementById("panicFill").style.width=pct+"%";let t=levels[0][1];levels.forEach(l=>{if(pct>=l[0])t=l[1]});document.getElementById("panicText").textContent=pct+"٪ — "+t;}
+updatePanic();setInterval(updatePanic,60000);
+let cry=0;try{cry=parseInt(localStorage.getItem("cry")||"0",10)||0}catch(e){}
+const cryEl=document.getElementById("cryCount");cryEl.textContent=cry;
+document.getElementById("cryBtn").addEventListener("click",e=>{cry++;cryEl.textContent=cry;try{localStorage.setItem("cry",cry)}catch(_){}
+const em=["💀","💪","🔥","☕","🚑"][Math.floor(Math.random()*5)];const f=document.createElement("div");f.className="fly";f.textContent=em;f.style.left=(e.clientX||innerWidth/2)+"px";f.style.top=(e.clientY||innerHeight/2)+"px";document.body.appendChild(f);setTimeout(()=>f.remove(),1200);});
+const hv=[[0,"ولا ساعة؟ إنت بتتحدى القدر 😎"],[1,"بداية كويسة.. بس اللي جنبك خلّص منهج كامل 😬"],[3,"تمام، إنت في المنطقة الآمنة.. نظريًا 🙂"],[6,"مجتهد! بس ذاكرت ولا قعدت قدام الكتاب؟ 🤨"],[9,"ارحم نفسك يا دكتور واشرب مية 🚰"],[12,"إنت مش بشري، إنت سيرفر 🤖"]];
+const hr=document.getElementById("hrs");
+function hrUpd(){const v=+hr.value;document.getElementById("hrsVal").textContent=v;let t=hv[0][1];hv.forEach(x=>{if(v>=x[0])t=x[1]});document.getElementById("hrsVerdict").textContent=t;}
+hr.addEventListener("input",hrUpd);hrUpd();
+const t1=["ملك","سلطان","أسطورة","كبير","شيخ","بشمهندس","دكتور"],t2=["الأنكي","السلايدات","القهوة","الكانتين","آخر ليلة","النوم في المحاضرة","التصوير","الكويزلت","الأسكتشات"];
+document.getElementById("titleBtn").addEventListener("click",()=>{document.getElementById("titleOut").textContent=t1[Math.floor(Math.random()*t1.length)]+" "+t2[Math.floor(Math.random()*t2.length)];});
+</script>
+</body>
+</html>
